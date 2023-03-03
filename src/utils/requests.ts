@@ -1,1 +1,1 @@
-export const BASE_URL = import.meta.env.API_URL
+export const BASE_URL = 'https://booking-app-api-8m40.onrender.com'
