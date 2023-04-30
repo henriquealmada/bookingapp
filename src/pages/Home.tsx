@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useLoaderData } from 'react-router-dom'
 import FavoritesList from '../components/home/FavoritesList'
 import FeaturedList from '../components/home/FeaturedList'
@@ -10,17 +9,18 @@ import SearchItem from '../components/home/SearchItem'
 import Layout from '../components/layout'
 
 export async function loader() {
-  const citiesCount = await axios(
-    `${BASE_URL}/hotels/countByCity?cities=madrid,london,austin`
-  )
-  const types = await axios(`${BASE_URL}/hotels/countByType`)
-
-  const favorites = await axios(`${BASE_URL}/hotels?featured=true&limit=4`)
+  const [citiesCount, types, favorites] = await Promise.all([
+    fetch(`${BASE_URL}/hotels/countByCity?cities=madrid,london,austin`).then(
+      res => res.json()
+    ),
+    fetch(`${BASE_URL}/hotels/countByType`).then(res => res.json()),
+    fetch(`${BASE_URL}/hotels?featured=true&limit=4`).then(res => res.json())
+  ])
 
   return {
-    citiesCount: citiesCount.data,
-    types: types.data,
-    favorites: favorites.data
+    citiesCount: citiesCount,
+    types: types,
+    favorites: favorites
   }
 }
 
