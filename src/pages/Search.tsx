@@ -1,5 +1,4 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { lazy, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { BASE_URL } from '../utils/requests'
 import { Hotel } from '../types'

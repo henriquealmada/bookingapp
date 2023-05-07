@@ -12,7 +12,11 @@ const FavoriteItem = ({ favorite }: Props) => {
         className="min-h-[430px] flex flex-col"
         to={`/hotels/${favorite._id}`}
       >
-        <img className="w-full flex-1" src={favorite.images[0]} alt="madrid" />
+        <img
+          src={favorite.images[0]}
+          className="w-full flex-1"
+          alt={favorite.name}
+        />
         <div className="flex flex-col gap-2 pt-2">
           <span className="text-[1.4rem] font-bold block capitalize">
             {favorite.name}

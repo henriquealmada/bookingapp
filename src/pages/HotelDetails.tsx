@@ -1,15 +1,18 @@
 import axios from 'axios'
-import { useContext, useState } from 'react'
+import { lazy, useContext, useState } from 'react'
 import { useLoaderData, useNavigate } from 'react-router-dom'
 import Layout from '../components/layout'
 import { SearchContext } from '../context/search-context'
 import { Hotel } from '../types'
 import { BASE_URL } from '../utils/requests'
-import CarouselModal from '../components/details/CarouselModal'
-import RoomsModal from '../components/details/RoomsModal'
+// import CarouselModal from '../components/details/CarouselModal'
+// import RoomsModal from '../components/details/RoomsModal'
 import Cookies from 'universal-cookie'
 import Alert from '../components/ui/Alert'
 const cookies = new Cookies()
+
+const CarouselModal = lazy(() => import('../components/details/CarouselModal'))
+const RoomsModal = lazy(() => import('../components/details/RoomsModal'))
 
 export async function loader({ params }: any) {
   const hotel: Hotel = await (
